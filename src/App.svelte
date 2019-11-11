@@ -1,24 +1,32 @@
 <script>
+  import "./styles/Global.svelte";
   import { onMount } from 'svelte';
+  import Nav from './components/Nav.svelte';
   import TreeNode from './components/TreeNode.svelte';
+  import Spinner from './components/Spinner.svelte';
 
-  let node;
+  let data;
 
   onMount(async () => {
-    await getFile()
-  })
-
-  function getFile() {
-    fetch('http://localhost:5001/ppl/5513000100000084/DCPAR___151207114110/json')
-      .then(resp => resp.json())
-      .then(data => (node = data));
-  }
+    const res = await fetch('http://82fc9574.eu.ngrok.io/ppl/28100045/CTLSPAR_151210150521/json');
+    data = await res.json();
+  });
 </script>
 
+<style>
+  main {
+    font-size: 12px;
+    padding: 1em 1.5em;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  }
+</style>
+
+<Nav/>
+
 <main>
-  {#if node}
-    <TreeNode {...node}/>
+  {#if data}
+    <TreeNode {...data}/>
   {:else}
-    <span>Loading...</span>
+    <Spinner/>
   {/if}
 </main>

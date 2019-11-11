@@ -15,9 +15,15 @@
     padding: 0 0 0 1.5em;
     background: url(https://svelte.dev/tutorial/icons/folder.svg) 0 0.1em no-repeat;
     background-size: 1em 1em;
-    font-weight: bold;
+    /* font-weight: bold; */
     cursor: pointer;
     color: #d73a49;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   .expanded {
